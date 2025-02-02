@@ -1,7 +1,6 @@
 package com.daniel.silva.RabbitMQ.config;
 
-import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.core.QueueBuilder;
+import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -27,6 +26,16 @@ public class ConfigRabbitMQ {
     @Bean
     public ApplicationListener<ApplicationReadyEvent>inicializarAdmin(RabbitAdmin rabbitAdmin) {
         return event -> rabbitAdmin.initialize();
+    }
+
+    @Bean
+    public FanoutExchange criarExchangeAgendamento() {
+        return ExchangeBuilder.fanoutExchange("agendamento-exchange").build();
+    }
+
+    @Bean
+    public Binding criarBindingAgendamento() {
+        return BindingBuilder.bind(criarFilaAgendamento()).to(criarExchangeAgendamento());
     }
 
 
