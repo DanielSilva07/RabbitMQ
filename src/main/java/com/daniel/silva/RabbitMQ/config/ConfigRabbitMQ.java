@@ -14,5 +14,11 @@ public class ConfigRabbitMQ {
     }
 
 
+    @Bean
+    public TratamentoErrorHandler tratamentoErrorHandler() {
+        return new TratamentoErrorHandler();
+    }
+
+
 
 }
