@@ -16,7 +16,7 @@ public class ImcListener {
 
     @RabbitListener(queues = "${rabbitmq.queue.imc}")
     public void listenToImcQueue(Cliente cliente) {
-        String mensagem = String.format(Mensagem.IMC,"O IMC do %s e de %s", cliente.getNome(),
+        String mensagem = String.format(Mensagem.IMC,cliente.getNome(),
                 cliente.getImc());
         notificationService.sendNotification(mensagem);
 
