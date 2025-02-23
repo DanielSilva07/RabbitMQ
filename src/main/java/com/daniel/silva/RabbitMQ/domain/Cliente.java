@@ -7,7 +7,6 @@ import lombok.*;
 @NoArgsConstructor
 public class Cliente {
 
-    private String id ;
     private String nome;
     private Double peso;
     private Double altura;
